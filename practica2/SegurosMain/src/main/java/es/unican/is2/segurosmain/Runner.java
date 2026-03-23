@@ -6,7 +6,7 @@ import es.unican.is2.seguroscommon.ISegurosDAO;
 import es.unican.is2.segurosdaoh2.ClientesDAO;
 import es.unican.is2.segurosdaoh2.SegurosDAO;
 import es.unican.is2.segurosgui.VistaAgente;
-
+/*COMPROBADO QUE FUNCIONALIDAD DEL JAR*/
 public class Runner {
 
     public static void main(String[] args) {
