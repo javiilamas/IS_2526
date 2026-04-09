@@ -1,0 +1,6 @@
+projectKey=segurosNuevo
+serverUrl=http://localhost:9000
+serverVersion=26.3.0.120487
+dashboardUrl=http://localhost:9000/dashboard?id=segurosNuevo
+ceTaskId=5fd7b45e-5381-4107-83ec-3e30652f8657
+ceTaskUrl=http://localhost:9000/api/ce/task?id=5fd7b45e-5381-4107-83ec-3e30652f8657
