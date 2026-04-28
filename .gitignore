@@ -7,3 +7,4 @@ replay_pid*.log
 .settings/
 .classpath
 .project.sonarlint/
+.sonarlint
