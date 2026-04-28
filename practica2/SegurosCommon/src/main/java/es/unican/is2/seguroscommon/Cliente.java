@@ -12,7 +12,7 @@ public class Cliente {
     private String dni;
     private String nombre;
     private boolean minusvalia;
-    private List<Seguro> seguros = new LinkedList<Seguro>();
+    private List<Seguro> seguros = new LinkedList<>();
 
     public List<Seguro> getSeguros() {
         return seguros;

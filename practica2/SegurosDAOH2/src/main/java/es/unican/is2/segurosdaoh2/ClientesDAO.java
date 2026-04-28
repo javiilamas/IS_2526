@@ -29,14 +29,15 @@ public class ClientesDAO implements IClientesDAO {
     public Cliente cliente(String dni) throws DataAccessException {
         Cliente result = null;
         Connection con = H2ServerConnectionManager.getConnection();
-        try {
-            Statement statement = con.createStatement();
+        try (Statement statement = con.createStatement()) {
+
             String statementText = "select * from Clientes where dni = '" + dni + "'";
             ResultSet results = statement.executeQuery(statementText);
+
             if (results.next()) {
                 result = procesaCliente(con, results);
             }
-            statement.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DataAccessException();
@@ -89,32 +90,42 @@ public class ClientesDAO implements IClientesDAO {
 
     @Override
     public List<Cliente> clientes() throws DataAccessException {
-        List<Cliente> clientes = new LinkedList<Cliente>();
+        List<Cliente> clientes = new LinkedList<>();
+
         Connection con = H2ServerConnectionManager.getConnection();
-        try {
-            Statement statement = con.createStatement();
-            String statementText = "select * from Clientes";
+        try (Statement statement = con.createStatement()) {
+
+            String statementText = "select dni, nombre, minusvalia from Clientes";
             ResultSet results = statement.executeQuery(statementText);
+
             while (results.next()) {
                 clientes.add(procesaCliente(con, results));
             }
-            statement.close();
+
         } catch (SQLException e) {
             throw new DataAccessException();
         }
-
         return clientes;
     }
 
     private Cliente procesaCliente(Connection con, ResultSet results) throws SQLException, DataAccessException {
+
         Cliente result = ClienteMapper.toCliente(results);
-        Statement statement = con.createStatement();
-        String statementText = String.format("select * from Seguros where cliente_FK = '%s'", result.getDni());
-        results = statement.executeQuery(statementText);
-        while (results.next()) {
-            result.getSeguros().add(SeguroMapper.toSeguro(results));
+
+        try (Statement statement = con.createStatement()) {
+
+            String statementText = String.format(
+                "select * from Seguros where cliente_FK = '%s'", 
+                result.getDni()
+            );
+
+            ResultSet rs = statement.executeQuery(statementText);
+
+            while (rs.next()) {
+                result.getSeguros().add(SeguroMapper.toSeguro(rs));
+            }
         }
-        statement.close();
+
         return result;
     }
 }

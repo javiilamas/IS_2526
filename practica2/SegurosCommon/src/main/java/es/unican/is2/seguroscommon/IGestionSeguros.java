@@ -1,7 +1,6 @@
 package es.unican.is2.seguroscommon;
 
 
-import java.util.zip.DataFormatException;
 
 
 
