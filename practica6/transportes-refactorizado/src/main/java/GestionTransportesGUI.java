@@ -44,7 +44,7 @@ public class GestionTransportesGUI {
 		Conductor c;
 
 		// crea la empresa de transportes
-		gestionTransportes gt = new gestionTransportes();
+		GestionTransportes gt = new GestionTransportes();
 		// crea la ventana de menu
 		Menu menu = new Menu("Transportes");
 		menu.insertaOpcion("Anhade conductor", ANHADE_CONDUCTOR);
@@ -97,15 +97,15 @@ public class GestionTransportesGUI {
 				if (c!=null) {
 					switch (tipo) {
 						case "P":
-							t = new Transporte(horas,CategoriaTransporte.Personas, personas);
+							t = new TransportePersonas(horas, personas);
 							c.anhadeTransporte(t);
 							break;
 						case "M":
-							t = new Transporte(horas, CategoriaTransporte.Mercancias, toneladas);
+							t = new TransporteMercancias(horas, toneladas);
 							c.anhadeTransporte(t);
 							break;
 						case "MP":
-							t = new Transporte(horas, CategoriaTransporte.MercanciasPeligrosas, toneladas);
+							t = new TransporteMercanciasPeligrosas(horas, toneladas);
 							c.anhadeTransporte(t);
 							break;		
 					}

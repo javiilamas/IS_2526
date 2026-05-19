@@ -1,30 +1,31 @@
 import java.util.ArrayList;
 
 /**
- * Métricas iniciales de la clase Conductor.
+ * Clase que representa a un conductor, con sus datos personales
+ * y los transportes que ha realizado.
  *
- * Métodos considerados: constructor, dni, getDni, getNombre, getApellido1,
+ * Refactorizaciones aplicadas:
+ * - Move Method: el calculo del extra concreto de cada transporte se mueve a Transporte.
+ * - Replace Conditional with Polymorphism: desaparece el switch por categoria.
+ * - Replace Magic Number with Symbolic Constant.
+ *
+ * Metricas finales:
+ * Metodos considerados: constructor, dni, getDni, getNombre, getApellido1,
  * apellido2, getDire, sueldo y anhadeTransporte.
- *
- * WMC = suma de la complejidad ciclomática de todos los métodos.
  * WMC = constructor(5) + dni(1) + getDni(1) + getNombre(1)
  *     + getApellido1(1) + apellido2(1) + getDire(1)
- *     + sueldo(6) + anhadeTransporte(1) = 18
- *
- * WMCn = 18 / 9 = 2.00
- *
- * CCog = constructor(2) + sueldo(7) = 9
- * El resto de métodos son getters o métodos secuenciales, por tanto CCog = 0.
- *
- * CCogn = 9 / 9 = 1.00
- *
- * CBO = 1: Transporte.
- * DIT = 0.
- * NOC = 0.
+ *     + sueldo(2) + anhadeTransporte(1) = 14
+ * WMCn = 14 / 9 = 1.56
+ * CCog = constructor(2) + sueldo(1) = 3
+ * CCogn = 3 / 9 = 0.33
+ * CBO = 1: Transporte
+ * DIT = 0
+ * NOC = 0
  */
 public class Conductor {
 
-	
+	private static final double SUELDO_BASE = 700.0;
+
 	private ArrayList<Transporte> transportes = new ArrayList<Transporte>();
 	private String dni;
 	private String nombre;
@@ -35,12 +36,12 @@ public class Conductor {
 	public Conductor(String dni, String nombre, String apellido1,
 			String apellido2, String direccion) {
 		// WMC constructor:
-	    // CC = 1 base + 1 por el if + 3 por los operadores || adicionales = 5
-	    //
-	    // CCog constructor:
-	    // if: +1
-	    // secuencia de operadores ||: +1
-	    // CCog = 2
+		// CC = 1 base + 1 por if + 3 por operadores || adicionales = 5
+		//
+		// CCog constructor:
+		// if: +1
+		// secuencia de operadores ||: +1
+		// CCog = 2
 		if (dni == null || nombre == null || apellido1 == null || direccion == null) {
 			throw new IllegalArgumentException();
 		}
@@ -76,43 +77,20 @@ public class Conductor {
 	}
 
 	public double sueldo() {
-
-	    // WMC sueldo:
-	    // CC = 1 base + 1 por el for + 3 por los case del switch + 1 por el if = 6
-	    //
-	    // CCog sueldo:
-	    // for: +1
-	    // switch dentro del for: +2
-	    // if dentro del for y del switch: +3
-	    // else: +1
-	    // CCog = 7
-
-	    
-		
+		// WMC sueldo:
+		// CC = 1 base + 1 por for = 2
+		//
+		// CCog sueldo:
+		// for: +1
+		// CCog = 1
 		double sueldoTransportes = 0;
 		for (Transporte t : transportes) {
-			double sueldoExtraTransporte = 0.0;
-			switch (t.categoria()) {
-				case Mercancias:
-					sueldoExtraTransporte = t.ton() * 2;
-					break;
-				case MercanciasPeligrosas:
-					sueldoExtraTransporte = t.ton() * 2 + 50;
-					break;
-				case Personas:
-					if (t.getPersonas() < 10)
-						sueldoExtraTransporte = t.horas() * 0.5;
-					else
-						sueldoExtraTransporte = t.horas();
-					break;
-			}
-			sueldoTransportes += t.horas() * 5 + sueldoExtraTransporte;
+			sueldoTransportes += t.extra();
 		}
-		return 700 + sueldoTransportes;
+		return SUELDO_BASE + sueldoTransportes;
 	}
 
 	public void anhadeTransporte(Transporte t) {
 		transportes.add(t);
 	}
-
 }

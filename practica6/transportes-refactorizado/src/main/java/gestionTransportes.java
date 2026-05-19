@@ -16,7 +16,7 @@ import java.util.List;
  * DIT = 0.
  * NOC = 0.
  */
-public class gestionTransportes {
+public class GestionTransportes {
 
 	private ArrayList<Conductor> cs = new ArrayList<Conductor>();
 	
