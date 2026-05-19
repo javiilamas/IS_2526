@@ -1,0 +1,12 @@
+Práctica 6 - Refactorizaciones
+Alumno: Javier Lamas Tabuenca
+
+Contenido:
+- transportes-original.zip: proyecto Maven original.
+- transportes-refactorizado.zip: proyecto Maven refactorizado.
+- transportes-refactorizado-1.0-SNAPSHOT.jar: JAR ejecutable del proyecto refactorizado.
+- lib/fundamentos.jar: librería necesaria para ejecutar la interfaz gráfica.
+- Informe_Practica6_Javier_Lamas_Tabuenca.pdf: informe de la práctica.
+
+Para ejecutar el JAR:
+java -jar transportes-refactorizado-1.0-SNAPSHOT.jar
