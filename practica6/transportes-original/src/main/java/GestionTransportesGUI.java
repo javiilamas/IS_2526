@@ -3,14 +3,37 @@ import java.util.List;
 import fundamentos.*;
 
 /**
- * Gestion de una empresa de transportes
+ * Métricas iniciales de la clase GestionTransportesGUI.
+ *
+ * Métodos considerados: main y mensaje.
+ *
+ * WMC = main(17) + mensaje(1) = 18
+ * WMCn = 18 / 2 = 9.00
+ *
+ * CCog = main(34) + mensaje(0) = 34
+ * CCogn = 34 / 2 = 17.00
+ *
+ * CBO = 4: gestionTransportes, Conductor, Transporte y CategoriaTransporte.
+ * DIT = 0.
+ * NOC = 0.
  */
 public class GestionTransportesGUI {
 
 	/**
 	 * Programa principal basado en menu
+	 * 
 	 */
 	public static void main(String[] args) {
+		// WMC main:
+	    // Se cuentan las estructuras de control:
+	    // while, switch, case, if, for y else-if.
+	    // CC = 17
+	    //
+	    // CCog main:
+	    // La complejidad cognitiva aumenta por las estructuras de control
+	    // y por su nivel de anidamiento dentro del while y del switch.
+	   // CCog = 34
+		
 		// opciones del menu
 		final int ANHADE_CONDUCTOR = 0, ANHADE_TRANSPORTE = 1, 
 		SUELDO_CONDUCTOR = 2, MEJOR_CONDUCTOR = 3;
