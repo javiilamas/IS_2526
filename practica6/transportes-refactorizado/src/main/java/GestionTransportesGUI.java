@@ -13,7 +13,7 @@ import fundamentos.*;
  * CCog = main(34) + mensaje(0) = 34
  * CCogn = 34 / 2 = 17.00
  *
- * CBO = 4: gestionTransportes, Conductor, Transporte y CategoriaTransporte.
+ * CBO = 4: GestionTransportes, Conductor, Transporte y CategoriaTransporte.
  * DIT = 0.
  * NOC = 0.
  */

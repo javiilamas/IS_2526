@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Métricas iniciales de la clase gestionTransportes.
+ * Métricas iniciales de la clase GestionTransportes.
  *
  * Métodos considerados: buscaConductor, anhadeConductor y conductores.
  *
